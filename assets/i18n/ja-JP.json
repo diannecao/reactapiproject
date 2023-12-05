@@ -1,0 +1,69 @@
+{
+  "times": {
+    "now": "オープン！",
+    "next": "つぎ",
+    "future": "そのつぎ"
+  },
+  "time": {
+    "in": "{time}後",
+    "remaining": "残り{time}",
+    "until": "{time} まで",
+    "left": "残り{time}",
+    "d": "{n}日 | {n}日",
+    "h": "{n}時間 | {n}時間",
+    "m": "{n}分 | {n}分",
+    "s": "{n}秒 | {n}秒",
+    "days": "{n}日 | {n}日",
+    "hours": "{n}時間 | {n}時間",
+    "minutes": "{n}分 | {n}分",
+    "seconds": "{n}秒 | {n}秒"
+  },
+  "schedule": {
+    "title": "スケジュール",
+    "types": {
+      "series": "チャレンジ",
+      "open": "オープン",
+      "pro": "チャレンジ",
+      "tricolor": "トリカラ",
+      "regular": "レギュラーマッチ",
+      "anarchy": "バンカラマッチ",
+      "splatfest": "フェスマッチ",
+      "xmatch": "Xマッチ",
+      "league": "リーグマッチ"
+    }
+  },
+  "salmonrun": {
+    "title": "サーモンラン",
+    "weapons": "支給ブキ",
+    "bigrun": "ビッグラン",
+    "eggstrawork": "バイトチームコンテスト"
+  },
+  "festival": {
+    "title": "フェス",
+    "upcoming": "フェス",
+    "active": "フェス",
+    "past": "フェス",
+    "results": {
+      "title": "清算",
+      "conchshells": "ホラガイ獲得率",
+      "votes": "得票率",
+      "open": "オープン",
+      "pro": "チャレンジ",
+      "tricolor": "トリカラアタック",
+      "won": "{team}の勝利！"
+    }
+  },
+  "gear": {
+    "title": "ギア",
+    "sale": "ただいま販売中のギア",
+    "dailydrop": "本日のピックアップ",
+    "order": "注文する"
+  },
+  "events": {
+    "title": "イベントマッチ",
+    "available": "つぎ",
+    "not_available": "スケジュールが未定です",
+    "now": "いま",
+    "now_open": "開催中！"
+  }
+}
