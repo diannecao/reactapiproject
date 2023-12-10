@@ -51,18 +51,18 @@ body{
   background-size: cover;
   background-position: center;
 }
-.navbar{
-  width:85%;
-  margin:auto;
+.navbar {
+  width: 85%;
+  margin: auto;
   padding: 35px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: flex-end; 
 }
-.navbar ul li{
+.navbar ul li {
   list-style: none;
   display: inline-block;
-  margin:0 20px;
+  margin: 0 10px; 
   position: relative;
 }
 .navbar ul li a{
@@ -74,17 +74,30 @@ body{
   margin:0 20px;
   position: relative;
 }
-.btn{
+.btn {
   font-family: myFirstFont;
   text-transform: uppercase;
   width: 100px;
-  padding: 10px 0;
+  padding: 10px 20px;
   text-align: center;
-  margin:20px 10px;
+  margin: 20px 10px;
   border-radius: 25px;
   font-weight: bold;
-  background:#404040;
+  background: #404040; /* Default grey background */
   color: #fff;
   cursor: pointer;
-  
+  transition: background-color 0.3s; /* Smooth transition effect */
+
+  /* Add this rule to remove the default focus outline */
+  outline: none;
+}
+/* background:#404040; */
+.btn.active {
+  background-color: rgb(118, 65, 225);
+  border-radius: 25px; 
+  padding: 10px 20px; 
+  color: white;
+}
+.btn:focus {
+  outline: rgb(118, 65, 225);
 }

@@ -1,34 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './Home';
-import React from 'react';
+// App.js
+
+import React, { useState } from "react";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import Gear from "./Gear"; 
+import Splatfest from "./Splatfest"; 
+import "./App.css";
 
 function App() {
+  const [active, setActive] = useState("");
+  const handleButtonClick = (buttonName) => {
+    setActive((prevActive) => (prevActive === buttonName ? "" : buttonName));
+  };
+
   return (
-    <>
-<head>
-  <title>Main Page</title>
-</head>
-<body>
-  <div className = "banner">
-        <div className = "navbar">
-        <h1>Splatoon 3</h1>
+    
+    <Router>
+      <div>
+        <div className="banner">
+          <div className="navbar">
+            <h1>Splatoon 3</h1>
             <ul>
-            <button onclick="document.location='MyGear.js'" class="btn"><span></span> My Gear</button>
-            <script src="script.js"></script>
-          
-                <li><a href="#">Home</a></li>
-                <li><a href="aboutme.html"> My Gear</a></li>
-                <li><a href="#">Splatfest</a></li>
+              <li>
+                 <Link
+                  to="/"
+                  className={`btn ${active === "home" ? "active" : ""}`}
+                  onClick={() => handleButtonClick("home")}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+              <Link
+                  to="/gear"
+                  className={`btn ${active === "gear" ? "active" : ""}`}
+                  onClick={() => handleButtonClick("gear")}
+                >
+                  My Gear
+                </Link>
+              </li>
+              <li>
+              <Link
+                  to="/splatfest"
+                  className={`btn ${active === "splatfest" ? "active" : ""}`}
+                  onClick={() => handleButtonClick("splatfest")}
+                >
+                  Splatfest
+                </Link>
+              </li>
             </ul>
+          </div>
         </div>
-    </div>
-    <Home/>
-</body>
-</>
+
+        <Routes>
+  <Route path="/gear" element={<Gear />} />
+  <Route path="/splatfest" element={<Splatfest />} />
+  <Route path="/" element={<Home />} />
+</Routes>
+
+      </div>
+    </Router>
   );
 }
 
 export default App;
-
-
