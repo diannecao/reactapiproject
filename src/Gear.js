@@ -6,9 +6,9 @@ const Gear = () => {
     <div>
         <head>
     <title>About Me Page</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png" />
   </head>
-      <h2>My Gear Page</h2>
+      <h2>My Gear</h2>
+    
       {/* Add your specific content here */}
     </div>
   );

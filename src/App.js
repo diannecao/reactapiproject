@@ -14,7 +14,7 @@ function App() {
   };
 
   return (
-    
+    <>
     <Router>
       <div>
         <div className="banner">
@@ -60,6 +60,12 @@ function App() {
 
       </div>
     </Router>
+    <body>
+ 
+</body>
+
+    </>
+    
   );
 }
 
