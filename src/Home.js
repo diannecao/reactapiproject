@@ -42,6 +42,8 @@ const Home = () => {
 
         //console.log(res.regularSchedules.nodes.vsStages);
         const regularSchedules = res.data.data.regularSchedules.nodes;
+        const bankaraSchedules = res.data.data.bankaraSchedules.nodes;
+        const xSchedules = res.data.data.xSchedules.nodes;
         const images = regularSchedules
           .map((schedule) =>
             schedule.regularMatchSetting.vsStages.map(
@@ -49,6 +51,8 @@ const Home = () => {
             )
           )
           .flat();
+
+          
 
         setImageUrls(images);
       })
