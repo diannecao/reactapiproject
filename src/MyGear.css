@@ -1,0 +1,46 @@
+.my-gear-container {
+  position: relative; /* Added for absolute positioning context */
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+  
+}
+
+.gear-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: calc(100% - 70px); /* Adjust width to account for salmon character */
+  flex-grow: 1;
+}
+
+.gear-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gear-item img {
+  width: 100%; /* Adjust if needed */
+  height: auto; /* Keep image aspect ratio */
+}
+
+.gear-item p {
+  margin-top: 10px;
+}
+
+.salmon-character {
+  position: absolute;
+  left: 700px; /* 50px from the right side of the viewport */
+  top: -100px;
+  bottom: 0px; /* Adjust as needed */
+  width: 70%; /* Adjust as needed */
+  min-width: 300px; /* Minimum width for the character */
+}
+
+.salmon-character img {
+  width: 100%;
+  height: auto;
+}

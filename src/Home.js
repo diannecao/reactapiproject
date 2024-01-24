@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Home = () => {
   const [imageUrls, setImageUrls] = useState([]);
+  const [anarchyUrls, setAnarchyUrls] = useState([]);
   const [Data, setData] = useState({
     Company: "",
     Two: "",
@@ -35,6 +36,30 @@ const Home = () => {
           res.data.data.regularSchedules.nodes[0].regularMatchSetting
             .vsStages[1].image.url
         );
+        //what is going on 
+        // console.log("Response from main api: ", res);
+        // console.log("Home data: ", res.data);
+        // console.log("bankara schedule: ", res.data.data.bankaraSchedules);
+        // console.log("Nodes: ", res.data.data.bankaraSchedules.nodes);
+        // console.log(
+        //   "Regulaar Match: ",
+        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
+        // );
+        // console.log(
+        //   "Stages: ",
+        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings.vsStages
+        // );
+        // console.log(
+        //   "Inmage data: ",
+        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
+        //     .vsStages[1].image
+        // );
+        // console.log(
+        //   "Final anarchy url: ",
+        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
+        //     .vsStages[1].image.url
+        // );
+        
 
         //let companyData=res.data.ad;
 
@@ -55,6 +80,18 @@ const Home = () => {
           
 
         setImageUrls(images);
+
+        const anarchyimages = bankaraSchedules
+          .map((schedule) =>
+            schedule.bankaraMatchSettings.vsStages.map(
+              (stage) => stage.image.url
+            )
+          )
+          .flat();
+
+          
+
+        setAnarchyUrls(anarchyimages);
       })
       .catch((err) => {
         console.log(err);
@@ -68,7 +105,7 @@ const Home = () => {
             <img src = {Data.Two} />
             </div> */}
       <div className="home-container">
-        <h2>Current Maps</h2>
+        <h2>Regular Maps</h2>
         <div className="card-container">
           <img
             className="card-background"
@@ -86,6 +123,36 @@ const Home = () => {
               />
             ))}
             {imageUrls.slice(2, 4).map((url, index) => (
+              <img
+                key={index}
+                className="secondmap-image"
+                src={url}
+                alt={`Map ${index + 1}`}
+              />
+            ))}
+           
+          </div>
+        </div>
+      </div>
+      <div className="home-container">
+        <h2>Anarchy Maps</h2>
+        <div className="card-container">
+          <img
+            className="card-background"
+            src={require("./cardbackground_yellow.jpeg")}
+            alt="Card Background"
+          />
+
+          <div className="topmap-images-container">
+            {anarchyUrls.slice(0, 2).map((url, index) => (
+              <img
+                key={index}
+                className="topmap-image"
+                src={url}
+                alt={`Map ${index + 1}`}
+              />
+            ))}
+            {anarchyUrls.slice(2, 4).map((url, index) => (
               <img
                 key={index}
                 className="secondmap-image"
