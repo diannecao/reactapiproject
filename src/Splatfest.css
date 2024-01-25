@@ -1,0 +1,25 @@
+.splatfest-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 500px); 
+    grid-gap: 20px;
+    padding: 20px;
+    margin-left: 40px;
+  }
+  
+  
+  .splatfest-item {
+    text-align: center;
+  }
+  
+  .splatfest-item img {
+    width: 100%; 
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto 10px; 
+  }
+  
+  .splatfest-item p {
+    font-size: 20px;
+    margin: 5; 
+  }
+  

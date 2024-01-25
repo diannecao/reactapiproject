@@ -27,7 +27,7 @@ function App() {
                   className={`btn ${active === "home" ? "active" : ""}`}
                   onClick={() => handleButtonClick("home")}
                 >
-                  Home
+                  Maps
                 </Link>
               </li>
               <li>

@@ -1,166 +1,126 @@
+//Home.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Home.css";
+import anarchylogo from "/Users/dianne/Desktop/Milton/ Web Dev/reactapiproject/src/anarchylogo.svg";
+import regularlogo from "/Users/dianne/Desktop/Milton/ Web Dev/reactapiproject/src/regularlogo.svg";
 
 const Home = () => {
-  const [imageUrls, setImageUrls] = useState([]);
-  const [anarchyUrls, setAnarchyUrls] = useState([]);
-  const [Data, setData] = useState({
-    Company: "",
-    Two: "",
+  const [imageUrls, setImageUrls] = useState({
+    mapname:[],
+    imageurl:[],
   });
-  const [colorsData, setColorsData] = useState([]);
+  const [anarchyUrls, setAnarchyUrls] = useState({
+    mapname:[],
+    imageurl:[],
+  });
+
+
+  //const [anarchyUrls, setAnarchyUrls] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://splatoon3.ink/data/schedules.json")
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("https://splatoon3.ink/data/schedules.json");
         console.log("Response from main api: ", res);
-        console.log("Home data: ", res.data);
-        console.log("Regular schedule: ", res.data.data.regularSchedules);
-        console.log("Nodes: ", res.data.data.regularSchedules.nodes);
         console.log(
-          "Regulaar Match: ",
-          res.data.data.regularSchedules.nodes[0].regularMatchSetting
-        );
-        console.log(
-          "Stages: ",
-          res.data.data.regularSchedules.nodes[0].regularMatchSetting.vsStages
-        );
-        console.log(
-          "Inmage data: ",
-          res.data.data.regularSchedules.nodes[0].regularMatchSetting
-            .vsStages[1].image
-        );
-        console.log(
-          "Final url: ",
-          res.data.data.regularSchedules.nodes[0].regularMatchSetting
-            .vsStages[1].image.url
-        );
-        //what is going on 
-        // console.log("Response from main api: ", res);
-        // console.log("Home data: ", res.data);
-        // console.log("bankara schedule: ", res.data.data.bankaraSchedules);
-        // console.log("Nodes: ", res.data.data.bankaraSchedules.nodes);
-        // console.log(
-        //   "Regulaar Match: ",
-        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
-        // );
-        // console.log(
-        //   "Stages: ",
-        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings.vsStages
-        // );
-        // console.log(
-        //   "Inmage data: ",
-        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
-        //     .vsStages[1].image
-        // );
-        // console.log(
-        //   "Final anarchy url: ",
-        //   res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings
-        //     .vsStages[1].image.url
-        // );
+            "anarchy: ",
+            res.data.data.bankaraSchedules
+          );
+          console.log(
+            "anarchy nodes: ",
+            res.data.data.bankaraSchedules.nodes[0]
+          );
+          console.log(
+            "anarchy matchsetting: ",
+            res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings[0]
+          );
+          console.log(
+            "anarchy vsstage: ",
+            res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings[0].vsStages[0]
+          );
+          console.log(
+            "anarchy image: ",
+            res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings[0].vsStages[0].image.url
+          );
+          console.log(
+            "anarchy name: ",
+            res.data.data.bankaraSchedules.nodes[0].bankaraMatchSettings[0].vsStages[0].name
+          );
         
+        const regularSchedules = [];
+        for (let x = 0; x <= 3; x++) {
+          regularSchedules.push(res.data.data.regularSchedules.nodes[x].regularMatchSetting.vsStages[1].name);
+        }
 
-        //let companyData=res.data.ad;
+        const mapImage = [];
+        for (let x = 0; x <= 3; x++) {
+          mapImage.push(res.data.data.regularSchedules.nodes[x].regularMatchSetting.vsStages[1].image.url);
+        }
 
-        //    setData({Company:res.data.data.regularSchedules.nodes[0].regularMatchSetting.vsStages[1].image.url, Two:res.data.data.regularSchedules.nodes[0].regularMatchSetting.vsStages[0].image.url});
+        setImageUrls({
+          mapname: regularSchedules,
+          imageurl: mapImage,
+        });
 
-        //console.log(res.regularSchedules.nodes.vsStages);
-        const regularSchedules = res.data.data.regularSchedules.nodes;
-        const bankaraSchedules = res.data.data.bankaraSchedules.nodes;
-        const xSchedules = res.data.data.xSchedules.nodes;
-        const images = regularSchedules
-          .map((schedule) =>
-            schedule.regularMatchSetting.vsStages.map(
-              (stage) => stage.image.url
-            )
-          )
-          .flat();
+        const anarchySchedule = [];
+        for (let x = 0; x <= 3; x++) {
+          anarchySchedule.push(
+            res.data.data.bankaraSchedules.nodes[x].bankaraMatchSettings[0].vsStages[0].name);
+        }
 
-          
+        const anarchyImage = [];
+        for (let x = 0; x <= 3; x++) {
+          anarchyImage.push(
+            res.data.data.bankaraSchedules.nodes[x].bankaraMatchSettings[0].vsStages[0].image.url);
+        }
 
-        setImageUrls(images);
+        setAnarchyUrls({
+          mapname: anarchySchedule,
+          imageurl: anarchyImage,
+        });
 
-        const anarchyimages = bankaraSchedules
-          .map((schedule) =>
-            schedule.bankaraMatchSettings.vsStages.map(
-              (stage) => stage.image.url
-            )
-          )
-          .flat();
-
-          
-
-        setAnarchyUrls(anarchyimages);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+      } catch (error) {
+        console.error("Error fetching data from other API: ", error);
+      }
+    };
+    fetchData();
+  }, []); 
   return (
     <>
-      {/* <div className="home-container">
-            <h2>Current Maps</h2>
-            <img src = {Data.Company} />
-            <img src = {Data.Two} />
-            </div> */}
-      <div className="home-container">
-        <h2>Regular Maps</h2>
+      <div className="home-container1">
+      <div className="title-with-logo">
+        <h2>Current Regular Maps</h2>
+        
+        <img src={regularlogo} alt="logo" />
+        </div>
         <div className="card-container">
-          <img
-            className="card-background"
-            src={require("./cardbackground_yellow.jpeg")}
-            alt="Card Background"
-          />
-
-          <div className="topmap-images-container">
-            {imageUrls.slice(0, 2).map((url, index) => (
-              <img
-                key={index}
-                className="topmap-image"
-                src={url}
-                alt={`Map ${index + 1}`}
-              />
+          <div className="splatfest-grid">
+            {imageUrls.mapname.map((name, index) => (
+              <div className="splatfest-item" key={index}>
+                <p>{name}</p>
+                <img src={imageUrls.imageurl[index]} alt={`Map Image ${index}`} />
+              </div>
             ))}
-            {imageUrls.slice(2, 4).map((url, index) => (
-              <img
-                key={index}
-                className="secondmap-image"
-                src={url}
-                alt={`Map ${index + 1}`}
-              />
-            ))}
-           
           </div>
         </div>
       </div>
-      <div className="home-container">
-        <h2>Anarchy Maps</h2>
-        <div className="card-container">
-          <img
-            className="card-background"
-            src={require("./cardbackground_yellow.jpeg")}
-            alt="Card Background"
-          />
+      
+     
 
-          <div className="topmap-images-container">
-            {anarchyUrls.slice(0, 2).map((url, index) => (
-              <img
-                key={index}
-                className="topmap-image"
-                src={url}
-                alt={`Map ${index + 1}`}
-              />
+      <div className="home-container2">
+      <div className="title-with-logo">
+        <h2>Current Anarchy Maps</h2>
+        <img src={anarchylogo} alt="logo" />
+      </div>
+        <div className="card-container">
+          <div className="splatfest-grid">
+            {anarchyUrls.mapname.map((name, index) => (
+              <div className="splatfest-item" key={index}>
+                <p>{name}</p>
+                <img src={anarchyUrls.imageurl[index]} alt={`Map Image ${index}`} />
+              </div>
             ))}
-            {anarchyUrls.slice(2, 4).map((url, index) => (
-              <img
-                key={index}
-                className="secondmap-image"
-                src={url}
-                alt={`Map ${index + 1}`}
-              />
-            ))}
-           
           </div>
         </div>
       </div>

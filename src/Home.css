@@ -1,0 +1,18 @@
+   /* CSS styling for Home Page */
+.title-with-logo {
+    display: flex;
+    align-items: center; 
+    width: 100%; 
+    margin-left: 60px;
+    
+  }
+  
+  .map-logo {
+    height: 50px; 
+  }
+  
+  .home-container {
+    margin-left: 20px; 
+    margin-right: 20px; 
+  }
+  

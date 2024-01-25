@@ -1,3 +1,4 @@
+ // Gear.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MyGear.css";
@@ -39,7 +40,7 @@ const Gear = () => {
         //   response.data.data.gesotown.limitedGears.gear.usualGearPower.image.url
         // );
         
-        // Extract specific gear-related data and set it to state
+       
         //const gearInfo = response.data.data.gesotown.limitedGears[0].gear.image.url;
           console.log("what is this",response.data.data.gesotown.limitedGears[1].gear.name)
         const gearData=[];
@@ -62,9 +63,9 @@ const Gear = () => {
       }
     };
 
-    // Call the function to fetch data
+    
     fetchData();
-  }, []); // Make sure to adjust the dependency array as needed
+  }, []); 
 
   const currentGearsText = "Current Gears";
 
